@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import Header from '../Header/Header';
 import Section from '../Section/Section';
-// import ContactList from '../ContactList/ContactList';
+import ContactList from '../ContactList/ContactList';
 import Filter from '../Filter/Filter';
 import ContactForm from '../ContactForm/ContactForm';
 import { Container, List } from './App.styled';
@@ -24,9 +24,9 @@ function App() {
     setContacts(contacts => [...contacts, newContact]);
   };
 
-  // const deleteContacts = userId => {
-  //   setContacts(prevState => prevState.filter(user => user.id !== userId));
-  // };
+  const deleteContacts = userId => {
+    setContacts(prevState => prevState.filter(user => user.id !== userId));
+  };
 
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -36,12 +36,12 @@ function App() {
     setFilter(e.currentTarget.value);
   };
 
-  // const getVisibleContacts = () => {
-  //   const normalizeFilter = filter.toLowerCase();
-  //   return contacts.filter(contact =>
-  //     contact.name.toLowerCase().includes(normalizeFilter)
-  //   );
-  // };
+  const getVisibleContacts = () => {
+    const normalizeFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizeFilter)
+    );
+  };
 
  
   return (
@@ -51,7 +51,7 @@ function App() {
         <Header title="Contacts" />
         <Filter value={filter} onChange={changeFilter} />
         <List>
-          {/* <ContactList contacts={getVisibleContacts()} onDeleteContacts={deleteContacts} /> */}
+          <ContactList contacts={getVisibleContacts()} onDeleteContacts={deleteContacts} />
         </List>
       </Section>
     </Container>
