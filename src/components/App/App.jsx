@@ -36,13 +36,12 @@ function App() {
     setFilter(e.currentTarget.value);
   };
 
-  const getVisibleContacts = () => {
-    const normalizeFilter = filter.toLowerCase();
-    const filteredContacts = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizeFilter)
-    );
-    return filteredContacts;
-  };
+  // const getVisibleContacts = () => {
+  //   const normalizeFilter = filter.toLowerCase();
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(normalizeFilter)
+  //   );
+  // };
 
  
   return (
@@ -52,7 +51,7 @@ function App() {
         <Header title="Contacts" />
         <Filter value={filter} onChange={changeFilter} />
         <List>
-          <ContactList contacts={getVisibleContacts()} onDeleteContacts={deleteContacts} />
+          {/* <ContactList contacts={getVisibleContacts()} onDeleteContacts={deleteContacts} /> */}
         </List>
       </Section>
     </Container>
