@@ -34,12 +34,12 @@ function App() {
 
   const getVisibleContacts = () => {
     const normalizeFilter = filter.toLowerCase();
-
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizeFilter)
     );
   };
-  const visibleContacts = getVisibleContacts();
+
+  // const visibleContacts = getVisibleContacts();
 
   const deleteContacts = userId => {
     setContacts(prevState => prevState.filter(user => user.id !== userId));
@@ -52,7 +52,7 @@ function App() {
         <Header title="Contacts" />
         <Filter value={filter} onChange={changeFilter} />
         <List>
-          <ContactList contacts={visibleContacts} onDeleteContacts={deleteContacts} />
+          <ContactList contacts={getVisibleContacts()} onDeleteContacts={deleteContacts} />
         </List>
       </Section>
     </Container>
