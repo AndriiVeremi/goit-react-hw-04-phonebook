@@ -37,6 +37,7 @@ function App() {
     setContacts(prevState => prevState.filter(user => user.id !== userId));
   };
 
+  
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
