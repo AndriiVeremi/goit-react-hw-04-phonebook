@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import Header from '../Header/Header';
 import Section from '../Section/Section';
-import ContactList from '../ContactList/ContactList';
+// import ContactList from '../ContactList/ContactList';
 import Filter from '../Filter/Filter';
 import ContactForm from '../ContactForm/ContactForm';
 import { Container, List } from './App.styled';
@@ -24,9 +24,9 @@ function App() {
     setContacts(contacts => [...contacts, newContact]);
   };
 
-  const deleteContacts = userId => {
-    setContacts(prevState => prevState.filter(user => user.id !== userId));
-  };
+  // const deleteContacts = userId => {
+  //   setContacts(prevState => prevState.filter(user => user.id !== userId));
+  // };
 
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
