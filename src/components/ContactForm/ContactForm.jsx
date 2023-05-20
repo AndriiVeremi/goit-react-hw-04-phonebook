@@ -1,85 +1,152 @@
-import React, { Component } from 'react';
-import { nanoid } from 'nanoid';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   AiOutlineUser,
   AiOutlineUserAdd,
   AiTwotonePhone,
 } from 'react-icons/ai';
-import { Form, Input, Label, Button, } from './ContactForm.styled';
+import { Form, Input, Label, Button } from './ContactForm.styled';
 
-class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
+function ContactForm({ contacts, onSubmit }) {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  const handleChange = e => {
+    switch (e.currentTarget.name) {
+      case 'name':
+        setName(e.currentTarget.value);
+        break;
+      case 'number':
+        setNumber(e.currentTarget.value);
+        break;
+      default:
+        return;
+    }
   };
 
-  nameId = nanoid();
-  numberId = nanoid();
-
-  handleChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = e => {
-    const { name, number } = this.state;
+  const handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(name, number);
-    this.reset();
+    contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
+      ? alert(`${name} is already in contacts`)
+      : onSubmit({ name, number });
+    reset();
   };
 
-  reset() {
-    this.setState({
-      name: '',
-      number: '',
-    });
-  }
+  const reset = () => {
+    setName('');
+    setNumber('');
+  };
 
-  render() {
-    return (
-      <Form
-        autoComplete="off"
-        onSubmit={this.handleSubmit}
-      >
-        <Label htmlFor={this.nameId}>
-          <AiOutlineUser />
-          Name :{' '}
-          <Input
-            id={this.nameId}
-            type="text"
-            value={this.state.name}
-            onChange={this.handleChange}
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </Label>
+  return (
+    <Form autoComplete="off" onSubmit={handleSubmit}>
+      <Label>
+        <AiOutlineUser />
+        Name :{' '}
+        <Input
+          type="text"
+          value={name}
+          onChange={handleChange}
+          name="name"
+          // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+        />
+      </Label>
 
-        <Label htmlFor={this.numberId}>
-          <AiTwotonePhone />
-          Number : 
-          <Input
-            id={this.numberId}
-            type="tel"
-            value={this.state.number}
-            onChange={this.handleChange}
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </Label>
+      <Label>
+        <AiTwotonePhone />
+        Number :
+        <Input
+          type="tel"
+          value={number}
+          onChange={handleChange}
+          name="number"
+          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+        />
+      </Label>
 
-        <Button type="submit">
-          <AiOutlineUserAdd />
-          Add contact
-        </Button>
-      </Form>
-    );
-  }
+      <Button type="submit">
+        <AiOutlineUserAdd />
+        Add contact
+      </Button>
+    </Form>
+  );
 }
+
+// class ContactForm extends Component {
+//   state = {
+//     name: '',
+//     number: '',
+//   };
+
+//   nameId = nanoid();
+//   numberId = nanoid();
+
+//   handleChange = e => {
+//     const { name, value } = e.currentTarget;
+//     this.setState({ [name]: value });
+//   };
+
+//   handleSubmit = e => {
+//     const { name, number } = this.state;
+//     e.preventDefault();
+//     this.props.onSubmit(name, number);
+//     this.reset();
+//   };
+
+//   reset() {
+//     this.setState({
+//       name: '',
+//       number: '',
+//     });
+//   }
+
+//   render() {
+//     return (
+//       <Form
+//         autoComplete="off"
+//         onSubmit={this.handleSubmit}
+//       >
+//         <Label htmlFor={this.nameId}>
+//           <AiOutlineUser />
+//           Name :{' '}
+//           <Input
+//             id={this.nameId}
+//             type="text"
+//             value={this.state.name}
+//             onChange={this.handleChange}
+//             name="name"
+//             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+//             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+//             required
+//           />
+//         </Label>
+
+//         <Label htmlFor={this.numberId}>
+//           <AiTwotonePhone />
+//           Number :
+//           <Input
+//             id={this.numberId}
+//             type="tel"
+//             value={this.state.number}
+//             onChange={this.handleChange}
+//             name="number"
+//             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+//             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+//             required
+//           />
+//         </Label>
+
+//         <Button type="submit">
+//           <AiOutlineUserAdd />
+//           Add contact
+//         </Button>
+//       </Form>
+//     );
+//   }
+// }
 
 export default ContactForm;
 
