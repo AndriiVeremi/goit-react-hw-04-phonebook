@@ -24,6 +24,10 @@ function App() {
     setContacts(contacts => [...contacts, newContact]);
   };
 
+  const deleteContacts = userId => {
+    setContacts(prevState => prevState.filter(user => user.id !== userId));
+  };
+
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
@@ -34,17 +38,13 @@ function App() {
 
   const getVisibleContacts = () => {
     const normalizeFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
+    const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizeFilter)
     );
+    return filteredContacts;
   };
 
-  // const visibleContacts = getVisibleContacts();
-
-  const deleteContacts = userId => {
-    setContacts(prevState => prevState.filter(user => user.id !== userId));
-  };
-
+ 
   return (
     <Container>
       <Section title="Phonebook">
