@@ -1,11 +1,5 @@
 import styled from '@emotion/styled';
 
-export const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  margin-bottom: 30px;
-`;
-
 export const Item = styled.li`
   display: flex;
   align-items: center;

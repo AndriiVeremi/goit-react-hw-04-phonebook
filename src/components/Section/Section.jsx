@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './Section.styled';
 
-
 import Header from 'components/Header/Header';
 
 const Section = ({ title, children }) => {

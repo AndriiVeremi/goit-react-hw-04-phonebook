@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AiOutlineUserDelete } from 'react-icons/ai';
-import { List, Item, Name, Text, Button } from './ContactList.styled';
+import { Item, Name, Text, Button } from './ContactList.styled';
 
 const ContactList = ({ contacts, onDeleteContacts }) => (
-  <List>
-    {contacts.map(({ id, name, number }) => (
+  (contacts.map(({ id, name, number }) => (
       <Item key={id}>
         <Name>{name} :</Name>
         <Text>{number}</Text>
@@ -17,19 +16,18 @@ const ContactList = ({ contacts, onDeleteContacts }) => (
           Delete
         </Button>
       </Item>
-    ))}
-  </List>
+    )))
 );
 
 export default ContactList;
 
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired
-  ),
-  onDeleteContacts: PropTypes.func.isRequired,
-};
+// ContactList.propTypes = {
+//   contacts: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//       number: PropTypes.string.isRequired,
+//     }).isRequired
+//   ),
+//   onDeleteContacts: PropTypes.func.isRequired,
+// };

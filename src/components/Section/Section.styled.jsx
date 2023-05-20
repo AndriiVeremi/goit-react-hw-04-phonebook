@@ -9,5 +9,5 @@ export const Container = styled.section`
   align-items: center;
   max-width: 100%;
   width: 600px;
-  box-shadow: -1px -1px 15px #2196f3, 15px 15px 35px #fff;
+  box-shadow: -1px -1px 15px #4f555a;
 `;
