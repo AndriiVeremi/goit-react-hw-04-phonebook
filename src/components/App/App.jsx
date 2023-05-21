@@ -25,23 +25,13 @@ function App() {
   };
 
   const changeFilter = e => {
-    setFilter(e.currentTarget.value);
+    setFilter(e.currentTarget.value.toLowerCase());
   };
-
-  // const getVisibleContacts = () => {
-  //   const normalizeFilter = filter.toLowerCase();
-  //   return contacts.filter(contact => 
-  //     contact.name.toLowerCase().includes(normalizeFilter));
-  // };
 
   const getVisibleContacts = () => {
     const normalizeFilter = filter.toLowerCase();
-
-    const filteredContacts = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizeFilter)
-    );
-
-    return filteredContacts;
+    return contacts.filter(contact => 
+      contact.name.toLowerCase().includes(normalizeFilter));
   };
 
   const deleteContacts = userId => {
