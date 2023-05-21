@@ -28,10 +28,20 @@ function App() {
     setFilter(e.currentTarget.value);
   };
 
+  // const getVisibleContacts = () => {
+  //   const normalizeFilter = filter.toLowerCase();
+  //   return contacts.filter(contact => 
+  //     contact.name.toLowerCase().includes(normalizeFilter));
+  // };
+
   const getVisibleContacts = () => {
     const normalizeFilter = filter.toLowerCase();
-    return contacts.filter(contact => 
-      contact.name.toLowerCase().includes(normalizeFilter));
+
+    const filteredContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizeFilter)
+    );
+
+    return filteredContacts;
   };
 
   const deleteContacts = userId => {
