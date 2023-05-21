@@ -21,7 +21,7 @@ function App() {
       name: submitContact.name,
       number: submitContact.number,
     };
-    setContacts(contacts => [...contacts, newContact]);
+    setContacts(contacts => [newContact, ...contacts]);
   };
 
   const changeFilter = e => {
@@ -30,7 +30,8 @@ function App() {
 
   const getVisibleContacts = () => {
     const normalizeFilter = filter.toLowerCase();
-    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizeFilter));
+    return contacts.filter(contact => 
+      contact.name.toLowerCase().includes(normalizeFilter));
   };
 
   const deleteContacts = userId => {
@@ -45,11 +46,13 @@ function App() {
   return (
     <Container>
       <Section title="Phonebook">
-        <ContactForm onSubmit={addToList} contacts={contacts} />
+        <ContactForm onSubmits={addToList} contacts={contacts} />
         <Header title="Contacts" />
         <Filter value={filter} onChange={changeFilter} />
         <List>
-          <ContactList contacts={getVisibleContacts()} onDeleteContacts={deleteContacts} />
+          <ContactList 
+          contacts={getVisibleContacts()} 
+          onDeleteContacts={deleteContacts} />
         </List>
       </Section>
     </Container>

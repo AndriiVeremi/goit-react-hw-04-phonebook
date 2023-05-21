@@ -7,7 +7,7 @@ import {
 } from 'react-icons/ai';
 import { Form, Input, Label, Button } from './ContactForm.styled';
 
-function ContactForm({ contacts, onSubmit }) {
+function ContactForm({ contacts, onSubmits }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -28,7 +28,7 @@ function ContactForm({ contacts, onSubmit }) {
     e.preventDefault();
     contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
       ? alert(`${name} is already in contacts`)
-      : onSubmit({ name, number });
+      : onSubmits({ name, number });
     reset();
   };
 
