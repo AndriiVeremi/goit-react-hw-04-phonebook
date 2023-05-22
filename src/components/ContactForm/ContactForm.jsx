@@ -26,7 +26,7 @@ function ContactForm({ contacts, onSubmits }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase())
+    Object.values(contacts).find(contact => contact.name.toLowerCase() === name.toLowerCase())
       ? alert(`${name} is already in contacts`)
       : onSubmits({ name, number });
     reset();
