@@ -30,7 +30,7 @@ function App() {
 
   const getVisibleContacts = () => {
     const normalizeFilter = filter.toLowerCase();
-    return contacts.filter(contact => 
+    return Object.values(contacts).filter(contact => 
       contact.name.toLowerCase().includes(normalizeFilter));
   };
 
